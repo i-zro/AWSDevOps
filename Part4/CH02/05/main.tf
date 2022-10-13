@@ -30,6 +30,33 @@ module "vpc" {
   tags = local.common_tags
 }
 
+output "vpc_name" {
+  value = module.vpc.name
+}
+
+output "vpc_id" {
+  value = module.vpc.id
+}
+
+output "vpc_cidr" {
+  value = module.vpc.cidr_block
+}
+
+output "public_subnet_group" {
+  value = module.subnet_group__public
+}
+
+output "private_subnet_group" {
+  value = module.subnet_group__private
+}
+
+output "subnet_groups" {
+  value = {
+    public  = module.subnet_group__public
+    private = module.subnet_group__private 
+  }
+}
+
 module "subnet_group__public" {
   source  = "tedilabs/network/aws//modules/subnet-group"
   version = "0.24.0"
