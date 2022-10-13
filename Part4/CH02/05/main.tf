@@ -3,6 +3,16 @@ provider "aws" {
 }
 
 variable "vpc_name" {
+  description = "생성되는 VPC 이름" # 해당 변수가 어떤 의미를 가지는 지 설명
+  type        = string # 해당 변수가 어떤 타입인지
+  default     = "izero" # 변수명 지정하지 않았을 때 기본값
+}
+
+locals {
+  common_tags = {
+    Project = "Network"
+    Owner = "izero"
+ }
 }
 
 module "vpc" {
@@ -17,7 +27,7 @@ module "vpc" {
   dns_hostnames_enabled = true
   dns_support_enabled   = true
 
-  tags = {}
+  tags = local.common_tags
 }
 
 module "subnet_group__public" {
@@ -39,7 +49,7 @@ module "subnet_group__public" {
     }
   }
 
-  tags = {}
+  tags = local.common_tags
 }
 
 module "subnet_group__private" {
@@ -61,7 +71,7 @@ module "subnet_group__private" {
     }
   }
 
-  tags = {}
+  tags = local.common_tags
 }
 
 module "route_table__public" {
@@ -80,7 +90,7 @@ module "route_table__public" {
     },
   ]
 
-  tags = {}
+  tags = local.common_tags
 }
 
 module "route_table__private" {
@@ -94,5 +104,5 @@ module "route_table__private" {
 
   ipv4_routes = []
 
-  tags = {}
+  tags = local.common_tags
 }
