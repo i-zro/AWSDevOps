@@ -11,3 +11,28 @@ resource "aws_iam_user" "for_each_set" {
 output "for_each_set_user_arns" {
   value = values(aws_iam_user.for_each_set).*.arn
 }
+
+resource "aws_iam_user" "for_each_map" {
+  for_each = {
+    alice = {
+      level = "low"
+      manager = "izero"
+    }
+    bob = {
+      level = "mid"
+      manager = "naa0"
+    }
+    john = {
+      level = "high"
+      manager = "naa0"
+    }
+  }
+
+  name = each.key
+
+  tags = each.value
+}
+
+output "for_each_map_user_arns" {
+  value = values(aws_iam_user.for_each_map).*.arn
+}
