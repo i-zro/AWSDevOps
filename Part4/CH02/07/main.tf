@@ -6,7 +6,7 @@ provider "aws" {
  * count
  */
 
-resource "aws_iam_user" "iam" { # count = [user1, user2, ... user10]
+resource "aws_iam_user" "iam" {
   count = 10 # resource type과 관계없이 지원 (= meta-argument)
 
   name = "count-user-${count.index}" # string interpolation
