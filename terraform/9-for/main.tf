@@ -61,28 +61,28 @@ locals {
   ]
 }
 
-resource "aws_iam_user_policy_attachment" "developer" {  # 사용자 권한 정책 부여 리소스
+resource "aws_iam_user_policy_attachment" "developer" {
   for_each = {
     for user in local.developers :
     user.name => user
   }
 
-  user = each.key
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"  # 관리자 권한
+  user       = each.key
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 
-  depends on = [
+  depends_on = [
     aws_iam_user.this
   ]
 }
 
-#output "developers" {
-#  value = local.developers
-#}
-#
-#output "high_level_users" {
-#  value = [
-#    for user in var.users :
-#    user
-#    if user.level > 5
-#  ]
-#}
+output "developers" {
+  value = local.developers
+}
+
+output "high_level_users" {
+  value = [
+    for user in var.users :
+    user
+    if user.level > 5
+  ]
+}
