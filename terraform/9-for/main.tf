@@ -71,18 +71,18 @@ resource "aws_iam_user_policy_attachment" "developer" {  # 사용자 권한 정�
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"  # 관리자 권한
 
   depends on = [
-    aws_iam_user.this 
+    aws_iam_user.this
   ]
 }
 
-output "developers" {
-  value = local.developers
-}
-
-output "high_level_users" {
-  value = [
-    for user in var.users :
-    user
-    if user.level > 5
-  ]
-}
+#output "developers" {
+#  value = local.developers
+#}
+#
+#output "high_level_users" {
+#  value = [
+#    for user in var.users :
+#    user
+#    if user.level > 5
+#  ]
+#}
