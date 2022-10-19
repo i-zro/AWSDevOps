@@ -7,10 +7,10 @@ source "amazon-ebs" "ubuntu" {
       name                = "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
-			        }
-				    most_recent = true
-				        owners      = ["099720109477"]
-					  }
+    }
+    most_recent = true
+    owners      = ["099720109477"]
+  }
 
-					    ssh_username = "ubuntu"
-					    }
+  ssh_username = "ubuntu"
+}
