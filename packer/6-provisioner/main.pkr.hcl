@@ -1,9 +1,9 @@
 build {
-  name = "izro-packer"
+  name = "fastcampus-packer"
 
   source "amazon-ebs.ubuntu" {
     name     = "nginx"
-    ami_name = "izro-packer-nginx"
+    ami_name = "fastcampus-packer-nginx"
   }
 
   provisioner "shell" {
@@ -15,7 +15,7 @@ build {
 
   provisioner "file" {
     source      = "${path.root}/files/index.html"
-    destination = "/tmp/index.html"	# 현재 ubuntu 사용자라 tmp는 모든 사용자가 접근 가능하므로
+    destination = "/tmp/index.html"
   }
 
   provisioner "shell" {
@@ -27,8 +27,8 @@ build {
     ]
   }
 
-#  provisioner "breakpoint" {
-#    disable = false
-#    note    = "디버깅용"
-#  }
+  provisioner "breakpoint" {
+    disable = false
+    note    = "디버깅용"
+  }
 }
