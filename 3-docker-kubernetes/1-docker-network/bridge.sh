@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-docker network create --driver=bridge fastcampus
+docker network create --driver=bridge izero-bridge
 
-docker run -d --network=fastcampus --net-alias=hello nginx
-docker run -d --network=fastcampus --net-alias=grafana grafana/grafana
+docker run -d --network=izero-bridge --net-alias=hello nginx
+docker run -d --network=izero-bridge --net-alias=grafana grafana/grafana
